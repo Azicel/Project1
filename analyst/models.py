@@ -24,4 +24,4 @@ class Year(models.Model):
 class City(models.Model):
     city_name = models.CharField('Название города', max_length= 30)
     city_sal = models.BigIntegerField('Средний оклад в городе')
-    city_count = models.IntegerField('Доля вакансий от общего числа')
+    city_count = models.DecimalField('Доля вакансий от общего числа', max_digits=5, decimal_places=4)
