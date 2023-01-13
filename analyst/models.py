@@ -21,7 +21,11 @@ class Year(models.Model):
     year_count_job = models.IntegerField('Кол-во вакансий для профессии')
 
 
-class City(models.Model):
-    city_name = models.CharField('Название города', max_length= 30)
+class City_Sal(models.Model):
+    city_name_sal = models.CharField('Название города(оклад)', max_length= 30,default='Екатеринбург')
     city_sal = models.BigIntegerField('Средний оклад в городе')
+
+
+class City_Count(models.Model):
+    city_name_count = models.CharField('Название города(доля)', max_length=30, default='Екатеринбург')
     city_count = models.DecimalField('Доля вакансий от общего числа', max_digits=5, decimal_places=4)

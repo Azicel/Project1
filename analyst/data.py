@@ -1,15 +1,19 @@
 import cProfile
 import csv
 import itertools
+import os
 import re
 from enum import Enum
 from typing import List, Dict
 from unittest import TestCase
 
+import django
 import matplotlib.pyplot as plt
 import numpy as np
 
-from forms import CityForm, YearForm
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "WebDjango.settings")
+django.setup()
+from analyst.models import City_Sal, City_Count, Year
 
 
 def getData():
@@ -61,6 +65,7 @@ def getData():
                 inputconnect.sorting()
                 inputconnect.print()
                 rep.generate_image(job=job[1], data=inputconnect)
+                rep.fillDB(inputconnect)
                 "rep.generate_excel(job=job, data=inputconnect)"
                 "rep.generate_pdf(job=job, data=inputconnect)"
                 return data
@@ -389,7 +394,7 @@ def getData():
             Report.create_diagramm_vacs(data, job, width, x_axis_years, сount_graph)
             plt.tight_layout()
             plt.savefig('graph_year.png')
-            figure, (city_sal, city_job) = plt.subplots(2,1)
+            figure, (city_sal, city_job) = plt.subplots(2, 1)
             Report.create_diagramm_city(city_sal, data, width, job)
             Report.create_pie_charm(city_job, data, job)
             plt.tight_layout()
@@ -450,7 +455,7 @@ def getData():
             city_sal.legend(fontsize=8)
             x_axis_cities = np.arange(len(data.city_sal.keys()))
             city_sal.bar(x_axis_cities, data.city_sal.values(), width=width,
-                          label=f'Средняя з/п в городе для {job}')
+                         label=f'Средняя з/п в городе для {job}')
             city_sal.tick_params(axis='both', labelsize=8)
             city_sal.set_xticks(x_axis_cities, data.city_sal.keys(), rotation='vertical')
             city_sal.grid(True, axis='y')
@@ -515,13 +520,34 @@ def getData():
                                options={'enable-local-file-access': None})
 
         @staticmethod
-        def fillDB(data : InputConect):
+        def fillDB(data: InputConect):
+            year_data = {year: [salary, salary_job, count, count_job]
+                         for year, salary, salary_job, count, count_job in zip(data.years_sal_all.keys(),
+                                                                               data.years_sal_all.values(),
+                                                                               data.years_sal_job.values(),
+                                                                               data.years_count_all.values(),
+                                                                               data.years_count_job.values())
+                         }
+            city_data_sal = {sal_city: salary
+                             for sal_city, salary in zip(data.city_sal.keys(),
+                                                         data.city_sal.values())
+                             }
+            city_data_count = {count_city: salary
+                               for count_city, salary in zip(data.city_percent.keys(),
+                                                             data.city_percent.values())
+                               }
 
-            year_form = YearForm(data=data)
-            city_form = CityForm(data=data)
-            if year_form.is_valid() & city_form.is_valid():
-                year_form.save()
-                city_form.save()
+            for key, value in city_data_count.items():
+                City_Count.objects.get_or_create(city_count=value, city_name_count=key)
+            for key, value in city_data_sal.items():
+                City_Sal.objects.get_or_create(city_name_sal=key, city_sal=str(value))
+            for year, salary, salary_job, count, count_job in zip(data.years_sal_all.keys(),
+                                                                  data.years_sal_all.values(),
+                                                                  data.years_sal_job.values(),
+                                                                  data.years_count_all.values(),
+                                                                  data.years_count_job.values()):
+                Year.objects.get_or_create(year_date=year, year_sal_all=salary, year_sal_job=salary_job,
+                                           year_count_all=count, year_count_job=count_job)
 
     class Translate(Enum):
         """
@@ -578,4 +604,4 @@ def getData():
     dataset = DataSet('vacancies_dif_currencies.csv')
 
 
-cProfile.run('getData()', sort='tottime')
+getData()

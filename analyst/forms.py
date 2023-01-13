@@ -1,10 +1,16 @@
 from django import forms
-from .models import City, Year
+from .models import City_Sal, City_Count, Year
 
 
-class CityForm(forms.ModelForm):
+class CityFormSal(forms.ModelForm):
     class Meta:
-        model = City
+        model = City_Sal
+        fields = '__all__'
+
+
+class CityFormCount(forms.ModelForm):
+    class Meta:
+        model = City_Count
         fields = '__all__'
 
 
