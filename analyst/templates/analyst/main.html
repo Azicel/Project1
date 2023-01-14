@@ -1,26 +1,114 @@
 <!doctype html>
-<html lang="ru">
-  <body>
-    <header id="header"><a>AnalystWho</a>
-    </header>
-    <aside id="sidebar" class="sidebar">
-        <li class="nav-heading">Страницы</li>
-        <li class="nav-item">
-            <a class="nav-link" href="main.html">
-                <span>Главная</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="years.html">
-                <span>Статистика по годам</span>
-            </a>
-        </li>
-        <li>
-            <a class="nav-link" href="cities.html">
-                <span>Статистика по городам</span>
-            </a>
-        </li>
-    </aside>
-    <h1>Аналитик</h1>
+{% load static %}
+<html lang="eng">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href={% static "assets/vendor/bootstrap/css/bootstrap.min.css"%} rel="stylesheet">
+  <link href={% static "assets/vendor/bootstrap-icons/bootstrap-icons.css"%} rel="stylesheet">
+  <link href={% static "assets/vendor/boxicons/css/boxicons.min.css"%} rel="stylesheet">
+  <link href={% static "assets/vendor/quill/quill.snow.css"%} rel="stylesheet">
+  <link href={% static "assets/vendor/quill/quill.bubble.css"%}rel="stylesheet">
+  <link href={% static "assets/vendor/remixicon/remixicon.css"%}rel="stylesheet">
+  <link href={% static "assets/vendor/simple-datatables/style.css"%} rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href={% static "assets/css/style.css"%} rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.5.0
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+    <body>
+        <header id="header" class="header fixed-top d-flex align-items-center">
+            <div class="d-flex align-items-center justify-content-between">
+                <span class="d-none d-lg-block">AnalystWho</span>
+            </div>
+        </header>
+        <aside id="sidebar" class="sidebar">
+            <ul class="sidebar-nav" id="sidebar-nav">
+                <li class="nav-heading">Страницы</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="main.html">
+                        <span>Главная</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="years.html">
+                        <span>Востребованность</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="cities.html">
+                        <span>География</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main id="main" class="main">
+            <div class="pagetitle">
+                <h1>Аналитик, кто такой?</h1>
+            </div>
+            <section class="section profile">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                    <div class="col-xl-8">
+                        <div class="card">
+                            <div class="card-body pt-3">
+                                <div class="tab-content pt-2">
+                                    <div class="tab-pane fade profile-overview active show" id="profile-overview" role="tabpanel">
+                                        <h5 class="card-title">О профессии</h5>
+                                        <p class="small fst-italic">Аналитик - это специалист, который занимается анализом и интерпретацией данных. Он использует статистические методы и инструменты для поиска закономерностей и выявления важных трендов в большом количестве информации. Аналитик может работать в различных отраслях, таких как финансы, маркетинг, медицина, и он может использовать данные из различных источников, включая базы данных, социальные медиа и веб-аналитику.
+
+Работа аналитика включает в себя сбор, очистку, изучение и визуализацию данных. Он должен уметь использовать специализированное программное обеспечение для анализа данных, такое как Excel, R или Python, и должен быть в состоянии проектировать и использовать модели для анализа и прогнозирования
+Одним из главных заданий аналитика является поиск и интерпретация значимых данных, которые могут помочь в решении бизнес-проблем или принятии решений. Это может включать в себя изучение данных о покупках клиентов, трафика на сайте или данных о медицинских случаях, чтобы найти закономерности и выявить возможные проблемы.
+
+Аналитик должен иметь сильные коммуникационные навыки, чтобы можно было передать свои нахождения и выводы коллегам и руководству компании. Он также должен быть в состоянии понимать и объяснять сложные концепции и модели на простом языке.
+
+В зависимости от отрасли, в которой работает аналитик, его обязанности могут варьироваться. Например, аналитик в финансовой отрасли может изучать
+финансовые отчеты и прогнозировать будущую прибыль, в то время как аналитик в маркетинговой отрасли может исследовать данные о покупателях и использовать их для понимания поведения потребителей и создания эффективных маркетинговых кампаний.
+
+В любом случае, работа аналитика требует способности к логическому мышлению, навыков работы с данными и опыта использования инструментов для анализа данных. Это профессия с высокой демандом на рынке труда, и многие компании и организации ищут квалифицированных аналитиков для создания информационной основы для принятия решений.
+Аналитик может специализироваться в определенных областях, например, в аналитике данных, компьютерной лингвистике, экономической аналитике, аналитике маркетинга, аналитике безопасности и т.д. Это позволяет аналитику профессионально развиваться и становиться экспертом в своей области.
+
+Для того, чтобы стать аналитиком, часто требуется образование в области математики, статистики, информатики или экономики. Опыт работы в области анализа данных и навыки программирования также могут быть полезны для профессионального развития аналитика.
+
+В целом, профессия аналитика является важной и востребованной в современном мире, где большое количество данных собирается каждый день. Аналитики играют ключевую роль в п
+роектировании и создании информационной основы для принятия решений в различных отраслях и организациях. Они помогают компаниям и организациям понимать своих клиентов и рынок, оптимизировать свою деятельность и достигать более высокой эффективности.
+В зависимости от компании или организации, аналитик может работать в команде или индивидуально. Он может координировать и направлять работу других специалистов или же выполнять всю работу по анализу данных самостоятельно. В любом случае, это профессия, требующая способности к критическому мышлению, аналитическому скills и способности к обучению.
+Также необходимо отметить, что аналитик должен быть всегда в курсе последних технологических инноваций и разработок в области анализа данных, чтобы можно было использовать самые современные инструменты и методы для обработки и анализа данных. Это также может включать в себя обучение и использование специализированных программных пакетов для анализа данных, таких как R, Python, SAS или Tableau.
+
+В общем, аналитик - это ключевая роль в любой организации, которая использует данные для принятия решений. Это важная и востребованная профессия, требующая комбинации аналитических навыков, технических знаний и коммуникационных умений.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer id="footer" class="footer">
+            <strong>
+                <span>Порицкий Егор Андреевич РИ-210945</span>
+            </strong>
+        </footer>
     </body>
 </html>

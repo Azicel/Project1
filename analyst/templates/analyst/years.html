@@ -1,26 +1,133 @@
 <!doctype html>
-<html lang="ru">
-  <body>
-    <header id="header"><a>AnalystWho</a>
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static "assets/img/favicon.png" %}" rel="icon">
+  <link href="{% static "assets/img/apple-touch-icon.png" %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static "assets/vendor/bootstrap/css/bootstrap.min.css"%}" rel="stylesheet">
+  <link href="{% static "assets/vendor/bootstrap-icons/bootstrap-icons.css"%}" rel="stylesheet">
+  <link href="{% static "assets/vendor/boxicons/css/boxicons.min.css"%}" rel="stylesheet">
+  <link href="{% static "assets/vendor/quill/quill.snow.css"%}" rel="stylesheet">
+  <link href="{% static "assets/vendor/quill/quill.bubble.css"%}" rel="stylesheet">
+  <link href="{% static "assets/vendor/remixicon/remixicon.css"%}" rel="stylesheet">
+  <link href="{% static "assets/vendor/simple-datatables/style.css"%}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static "assets/css/style.css"%}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.5.0
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+<html lang="eng">
+    <body>
+        <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            <span class="d-none d-lg-block">AnalystWho</span>
+        </div>
     </header>
-    <aside id="sidebar" class="sidebar">
-        <li class="nav-heading">Страницы</li>
-        <li class="nav-item">
-            <a class="nav-link" href="main.html">
-                <span>Главная</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="years.html">
-                <span>Статистика по годам</span>
-            </a>
-        </li>
-        <li>
-            <a class="nav-link" href="cities.html">
-                <span>Статистика по городам</span>
-            </a>
-        </li>
-    </aside>
-    <h1>Здесь должны быть списки годов</h1>
+        <main id="main" class="main">
+        <aside id="sidebar" class="sidebar">
+            <ul class="sidebar-nav" id="sidebar-nav">
+                <li class="nav-heading">Страницы</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="main.html">
+                        <span>Главная</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="years.html">
+                        <span>Востребованность</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="cities.html">
+                        <span>География</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+            <div class="pagetitle" >Статистика по городам</div>
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="dataTable-wrapper dataTable-loading no-footer sortable fixed-columns">
+                                <div class="dataTable-container">
+                                    <table class="table datatable dataTable-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" data-sortable class>
+                                                    <a class="dataTable-sorter">
+                                                        Год
+                                                    </a>
+                                                </th>
+                                                <th scope="col" data-sortable class>
+                                                    <a class="dataTable-sorter">
+                                                        Средний оклад в месяц
+                                                    </a>
+                                                </th>
+                                                <th scope="col" data-sortable class>
+                                                    <a class="dataTable-sorter">
+                                                        Средний оклад в месяц для Аналитика
+                                                    </a>
+                                                </th>
+                                                <th scope="col" data-sortable class>
+                                                    <a class="dataTable-sorter">
+                                                        Кол-во вакансий
+                                                    </a>
+                                                </th>
+                                                <th scope="col" data-sortable class>
+                                                    <a class="dataTable-sorter">
+                                                        Кол-во вакансий для профессии Аналитик
+                                                    </a>
+                                                </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for year in years_data %}
+                                        <tr>
+                                            <td>{{ year.year_date }}</td>
+                                            <td>{{ year.year_sal_all }}</td>
+                                            <td>{{ year.year_sal_job}}</td>
+                                            <td>{{ year.year_count_all }}</td>
+                                            <td>{{ year.year_count_job }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <img src="{% static "images/graph_year.png" %}">
+                    </div>
+                </div>
+            </div>
+        </section>
+        </main>
+        <footer id="footer" class="footer">
+            <strong>
+                <span>Порицкий Егор Андреевич РИ-210945</span>
+            </strong>
+        </footer>
     </body>
 </html>

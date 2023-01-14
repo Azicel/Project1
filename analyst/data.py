@@ -393,12 +393,12 @@ def getData():
             Report.create_diagramm_sal(data, job, sal_graph, width, x_axis_years)
             Report.create_diagramm_vacs(data, job, width, x_axis_years, сount_graph)
             plt.tight_layout()
-            plt.savefig('graph_year.png')
+            plt.savefig('static/images/graph_year.png')
             figure, (city_sal, city_job) = plt.subplots(2, 1)
             Report.create_diagramm_city(city_sal, data, width, job)
             Report.create_pie_charm(city_job, data, job)
             plt.tight_layout()
-            plt.savefig('graph_city.png')
+            plt.savefig('static/images/graph_city.png')
 
         @staticmethod
         def create_diagramm_vacs(data: InputConect, job: str, width: float, x_axis_years, сount_graph):
@@ -411,12 +411,12 @@ def getData():
             :param x_axis_years: ось ОХ
             :param сount_graph: диаграмма
             """
-            сount_graph.set_title('Количество вакансий по год')
+            сount_graph.set_title('Количество вакансий в год')
             сount_graph.legend(fontsize=8)
             сount_graph.bar(x_axis_years - width / 2, data.years_count_all.values(), width=width,
-                            label='Количество вакансий в год')
+                            label='Количество вакансий в месяц')
             сount_graph.bar(x_axis_years + width / 2, data.years_count_job.values(), width=width,
-                            label=f'Количество вакансий в год для {job}')
+                            label=f'Количество вакансий в месяц для {job}')
             сount_graph.set_xticks(x_axis_years, data.years_sal_job.keys(), rotation='vertical')
             сount_graph.tick_params(axis='both', labelsize=8)
             сount_graph.grid(True, axis='y')
@@ -435,9 +435,9 @@ def getData():
             sal_graph.set_title('Уровень зарплат по годам')
             sal_graph.legend(fontsize=8)
             sal_graph.bar(x_axis_years - width / 2, data.years_sal_all.values(), width=width,
-                          label=f'Средняя з/п в год')
+                          label=f'Средняя з/п в месяц')
             sal_graph.bar(x_axis_years + width / 2, data.years_sal_job.values(), width=width,
-                          label=f'Средняя з/п в год для {job}')
+                          label=f'Средняя з/п в месяц для {job}')
             sal_graph.set_xticks(x_axis_years, data.years_sal_job.keys(), rotation='vertical')
             sal_graph.tick_params(axis='both', labelsize=8)
             sal_graph.grid(True, axis='y')
@@ -473,7 +473,7 @@ def getData():
             other = 1 - sum((list(value.values())))
             other_dic = {'Другие': other}
             other_dic.update(value)
-            city_job.set_title('Доли городов от общего числа вакансий')
+            city_job.set_title('Доля городов от общего числа вакансий')
             city_job.pie(list(other_dic.values()), labels=list(other_dic.keys()), textprops={'fontsize': 6})
             city_job.axis('scaled')
 
@@ -521,13 +521,6 @@ def getData():
 
         @staticmethod
         def fillDB(data: InputConect):
-            year_data = {year: [salary, salary_job, count, count_job]
-                         for year, salary, salary_job, count, count_job in zip(data.years_sal_all.keys(),
-                                                                               data.years_sal_all.values(),
-                                                                               data.years_sal_job.values(),
-                                                                               data.years_count_all.values(),
-                                                                               data.years_count_job.values())
-                         }
             city_data_sal = {sal_city: salary
                              for sal_city, salary in zip(data.city_sal.keys(),
                                                          data.city_sal.values())

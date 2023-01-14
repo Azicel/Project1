@@ -15,8 +15,8 @@ class Vacancy(models.Model):
 
 class Year(models.Model):
     year_date = models.IntegerField('Год')
-    year_sal_all = models.BigIntegerField('Средний оклад в год')
-    year_sal_job = models.BigIntegerField('Средний оклад в год для профессии')
+    year_sal_all = models.BigIntegerField('Средний оклад в месяц')
+    year_sal_job = models.BigIntegerField('Средний оклад в месяц для профессии')
     year_count_all = models.IntegerField('Кол-во вакансий')
     year_count_job = models.IntegerField('Кол-во вакансий для профессии')
 
