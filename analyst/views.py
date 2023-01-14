@@ -19,11 +19,3 @@ def cities(request):
     return render(request, 'analyst/cities.html', {'city_sal_data': all_cities_sal_data,
                                                    'city_count_data': all_cities_count_data,
                                                    })
-
-
-def css(request):
-    return render(request, request.path)
-
-
-def vendor(request):
-    return render(request, request.path)
